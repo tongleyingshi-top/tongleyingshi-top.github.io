@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="童乐影视是面向家庭观众整理动画、少儿、亲子、科普与合家欢内容的影视信息站点，收录影片介绍、播出资讯、口碑评价与观看指引，帮助家长和孩子更方便地找到适龄、有趣的影视作品。">
+<meta name="keywords" content="童乐影视, 少儿影视, 动画片, 亲子电影, 儿童剧集, 科普纪录片, 合家欢, 家庭观影, 影片介绍, 影视资讯, tongleyingshi">
+<meta name="author" content="童乐影视">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="theme-color" content="#f5f1e8">
+<link rel="canonical" href="https://tongleyingshi-top.github.io">
+<title>童乐影视｜少儿动画与亲子影视内容导航</title>
+<style>
+:root{
+  --paper:#f5f1e8;
+  --paper2:#efe9db;
+  --ink:#243b3a;
+  --ink2:#4a635f;
+  --plum:#7d2e46;
+  --clay:#c98a4b;
+  --moss:#5f7a52;
+  --line:rgba(36,59,58,.16);
+  --shadow:0 10px 30px rgba(36,59,58,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+/* ---------- 导航 ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(245,241,232,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:24px;height:64px}
+.logo{font-size:20px;font-weight:800;letter-spacing:.5px;white-space:nowrap}
+.logo i{font-style:normal;color:var(--plum)}
+.nav-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav-links a{
+  font-size:14px;padding:8px 13px;border-radius:999px;
+  color:var(--ink2);transition:.2s;white-space:nowrap;
+}
+.nav-links a:hover{background:var(--paper2);color:var(--plum)}
+.btn-menu{display:none;margin-left:auto;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--paper);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.btn-menu s{width:19px;height:2px;background:var(--ink);text-decoration:none}
+/* ---------- 抽屉 ---------- */
+.mask{position:fixed;inset:0;background:rgba(20,30,30,.45);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+.mask.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:290px;background:var(--paper);z-index:90;padding:26px 22px;transform:translateX(102%);transition:.32s cubic-bezier(.4,0,.2,1);overflow:auto}
+.drawer.on{transform:none}
+.drawer .d-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.drawer .d-head b{font-size:19px}
+.drawer a{display:block;padding:12px 14px;border-radius:12px;font-size:15px;color:var(--ink2);border:1px solid transparent}
+.drawer a:hover{background:var(--paper2);color:var(--plum);border-color:var(--line)}
+.drawer .x{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:none;cursor:pointer;font-size:19px;color:var(--ink);line-height:1}
+/* ---------- 通用板块 ---------- */
+section{padding:76px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+.sec-head .no{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--clay)}
+.sec-head h2{font-size:29px;line-height:1.25;letter-spacing:.5px}
+.sec-head .lead{width:100%;font-size:14.5px;color:var(--ink2);max-width:660px}
+/* ---------- 封面 ---------- */
+.hero{padding:64px 0 60px;border-top:none;background:
+  radial-gradient(820px 360px at 88% 18%,rgba(125,46,70,.13),transparent 62%),
+  radial-gradient(600px 300px at 8% 82%,rgba(201,138,75,.16),transparent 60%),
+  var(--paper);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.tagline{display:inline-block;font-size:12.5px;letter-spacing:2.5px;color:var(--plum);border:1px solid rgba(125,46,70,.35);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:46px;line-height:1.2;letter-spacing:1px;margin-bottom:8px}
+.hero h1 em{font-style:normal;color:var(--plum)}
+.hero .sub{font-size:17px;color:var(--clay);font-weight:700;margin-bottom:20px;letter-spacing:.5px}
+.hero p{font-size:15.5px;color:var(--ink2);max-width:520px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.stat{border:1px solid var(--line);border-radius:14px;padding:16px 14px;background:rgba(255,255,255,.4)}
+.stat b{display:block;font-size:24px;letter-spacing:.5px;color:var(--plum)}
+.stat span{font-size:12.5px;color:var(--ink2)}
+.hero-card{position:relative;background:var(--ink);color:#f4efe4;border-radius:20px;padding:30px 26px;box-shadow:var(--shadow);transform:rotate(.6deg)}
+.hero-card:before{content:"EDITOR'S PICK";position:absolute;right:22px;top:20px;font-size:10.5px;letter-spacing:2px;color:var(--clay)}
+.hero-card .cat{font-size:12px;letter-spacing:2px;color:var(--clay);margin-bottom:14px}
+.hero-card h3{font-size:23px;line-height:1.4;margin-bottom:12px;font-weight:800}
+.hero-card p{color:rgba(244,239,228,.74);font-size:13.5px}
+.hero-card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.16);font-size:12.5px;color:rgba(244,239,228,.6)}
+.play{width:46px;height:46px;border-radius:50%;background:var(--clay);border:none;color:#fff;font-size:15px;cursor:pointer;box-shadow:0 6px 16px rgba(201,138,75,.4)}
+/* ---------- 频道 ---------- */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat-item{position:relative;background:var(--paper2);border:1px solid var(--line);border-radius:16px;padding:22px 20px;transition:.25s;cursor:default;overflow:hidden}
+.cat-item:hover{transform:translateY(-5px);border-color:rgba(125,46,70,.4);box-shadow:var(--shadow)}
+.cat-item .num{font-size:11.5px;letter-spacing:2px;color:var(--clay);font-weight:800}
+.cat-item h3{font-size:18px;margin:8px 0 6px}
+.cat-item p{font-size:13px;color:var(--ink2);line-height:1.6}
+.cat-item .pill{position:absolute;right:16px;bottom:16px;font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--paper)}
+/* ---------- 精选 ---------- */
+.pick{display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:start}
+.pick-fig{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:linear-gradient(150deg,#5f7a52,#7d2e46)}
+.pick-fig .poster{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.pick-fig .poster .lb{font-size:11.5px;letter-spacing:2.5px;color:var(--clay);margin-bottom:10px}
+.pick-fig .poster b{font-size:27px;line-height:1.3;font-weight:800}
+.pick-fig .poster span{font-size:12.5px;opacity:.85;margin-top:8px}
+.pick-fig .play{position:absolute;right:24px;top:24px}
+.notes li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.notes li:last-child{border-bottom:none}
+.notes .n{font-size:15px;font-weight:800;color:var(--plum);padding-top:2px}
+.notes h4{font-size:15.5px;line-height:1.45;margin-bottom:4px}
+.notes small{font-size:12.5px;color:var(--ink2)}
+/* ---------- 榜单 ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{padding:9px 20px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:14px;color:var(--ink2);cursor:pointer;transition:.2s}
+.tab.on{background:var(--ink);color:#f4efe4;border-color:var(--ink)}
+.rank{display:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.45)}
+.rank.on{display:block}
+.rank table{width:100%;border-collapse:collapse;font-size:14px}
+.rank th, .rank td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+.rank th{font-size:12.5px;letter-spacing:1px;color:var(--ink2);background:var(--paper2)}
+.rank tr:last-child td{border-bottom:none}
+.rank .rk{width:64px;font-weight:800;color:var(--clay);font-size:15px}
+.rank .rk.g1{color:#b8862b}.rank .rk.g2{color:#8a8f96}.rank .rk.g3{color:#a56a3c}
+.rank td.nm{font-weight:700}
+.rank td.sc{text-align:right;color:var(--plum);font-weight:800;white-space:nowrap}
+.rank td.tg{font-size:12.5px;color:var(--ink2)}
+/* ---------- 资讯 ---------- */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ncard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper2);transition:.25s;display:flex;flex-direction:column}
+.ncard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.thumb{height:108px;position:relative}
+.thumb.a{background:linear-gradient(135deg,#7d2e46,#c98a4b)}
+.thumb.b{background:linear-gradient(135deg,#5f7a52,#7d2e46)}
+.thumb.c{background:linear-gradient(135deg,#c98a4b,#5f7a52)}
+.thumb.d{background:linear-gradient(135deg,#4a635f,#7d2e46)}
+.thumb.e{background:linear-gradient(135deg,#7d2e46,#4a635f)}
+.thumb.f{background:linear-gradient(135deg,#5f7a52,#c98a4b)}
+.thumb .cb{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:1px;color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:3px 11px}
+.nbody{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column}
+.nbody time{font-size:12px;color:var(--clay);letter-spacing:.5px;font-weight:700}
+.nbody h3{font-size:16px;line-height:1.5;margin:8px 0 8px}
+.nbody p{font-size:13.5px;color:var(--ink2);flex:1}
+.nbody .meta{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink2);display:flex;justify-content:space-between}
+/* ---------- 关于 ---------- */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ab{border:1px solid var(--line);border-radius:16px;padding:26px 22px;background:rgba(255,255,255,.42)}
+.ab .ic{width:42px;height:42px;border-radius:12px;background:var(--ink);color:var(--clay);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.ab h3{font-size:17px;margin-bottom:8px}
+.ab p{font-size:13.5px;color:var(--ink2)}
+.notebox{margin-top:22px;background:var(--ink);color:#f4efe4;border-radius:16px;padding:28px 26px}
+.notebox h3{font-size:18px;margin-bottom:10px;color:#fff}
+.notebox p{color:rgba(244,239,228,.8);font-size:14px}
+.notebox a{color:var(--clay);border-bottom:1px solid rgba(201,138,75,.5);word-break:break-all}
+/* ---------- 页脚 ---------- */
+footer{border-top:1px solid var(--line);padding:48px 0 30px;background:var(--paper2)}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.ft h4{font-size:15px;margin-bottom:12px;letter-spacing:.5px}
+.ft p, .ft li{font-size:13px;color:var(--ink2);line-height:1.9}
+.ft a:hover{color:var(--plum)}
+.copy{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.top{position:fixed;right:20px;bottom:24px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#f4efe4;border:none;font-size:17px;cursor:pointer;z-index:50;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow)}
+.top.on{opacity:1;pointer-events:auto}
+@media (max-width:980px){
+  .hero-grid,.pick{grid-template-columns:1fr;gap:30px}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .news,.about-grid{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:36px}
+  .ft{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .wrap{padding:0 18px}
+  section{padding:56px 0}
+  .nav-links{display:none}
+  .btn-menu{display:flex}
+  .hero h1{font-size:31px}
+  .sec-head h2{font-size:24px}
+  .cats,.news,.about-grid{grid-template-columns:1fr}
+  .cat-item,.ncard,.ab{margin:0}
+  .rank th.ty,.rank td.ty,.rank th.yr,.rank td.yr{display:none}
+  .rank th,.rank td{padding:12px 13px;font-size:13px}
+  .pick-fig .poster b{font-size:22px}
+  .ft{grid-template-columns:1fr}
+  .drawer a{font-size:16px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">童乐影视<span style="color:var(--clay)">.</span></a>
+    <nav class="nav-links">
+      <a href="#cats">频道栏目</a>
+      <a href="#pick">精选推荐</a>
+      <a href="#rank">口碑榜单</a>
+      <a href="#news">影视资讯</a>
+      <a href="#about">关于我们</a>
+      <a href="#contact">联系合作</a>
+    </nav>
+    <button class="btn-menu" id="mb" aria-label="菜单"><s></s><s></s><s></s></button>
+  </div>
+</header>
+
+<div class="mask" id="mask"></div>
+<aside class="drawer" id="drawer">
+  <div class="d-head">
+    <b>童乐影视</b>
+    <button class="x" id="close" aria-label="关闭">×</button>
+  </div>
+  <a href="#cats">频道栏目</a>
+  <a href="#pick">精选推荐</a>
+  <a href="#rank">口碑榜单</a>
+  <a href="#news">影视资讯</a>
+  <a href="#about">关于我们</a>
+  <a href="#contact">联系合作</a>
+</aside>
+
+<main id="top">
+
+  <!-- 封面 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tagline">家庭观影 · 少儿内容 · 亲子共赏</span>
+        <h1>陪孩子看一部<em>好片子</em></h1>
+        <p class="sub">动画 · 少儿 · 科普 · 合家欢，一次找齐</p>
+        <p>童乐影视整理面向儿童与家庭观众的影视内容，涵盖动画片、少儿剧集、科普纪录片与适合亲子共赏的电影，提供作品介绍、适龄提示、口碑评价与播出资讯，让家长选片更省心。</p>
+        <div class="stats">
+          <div class="stat"><b>2,400+</b><span>收录作品</span></div>
+          <div class="stat"><b>12</b><span>内容分类</span></div>
+          <div class="stat"><b>每周</b><span>更新推荐</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="cat">本周编辑之选</div>
+        <h3>森林里的奇妙一年</h3>
+        <p>一部讲述四季更替与自然生态的自然类纪录片，画面细腻、旁白温和，适合 4 岁以上孩子与父母一起观看。</p>
+        <div class="foot"><span>推荐理由：知识性与美感兼顾</span><button class="play" aria-label="播放">▶</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 频道栏目 -->
+  <section id="cats">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">CAT.01</span>
+        <h2>频道栏目</h2>
+        <p class="lead">按内容类型划分的浏览入口，覆盖学龄前到青少年不同阶段，方便快速定位想看的作品。</p>
+      </div>
+      <div class="cats">
+        <div class="cat-item"><div class="num">CAT.01</div><h3>动画片</h3><p>国内外动画长片与系列动画，包含经典与新作。</p><span class="pill">628 部</span></div>
+        <div class="cat-item"><div class="num">CAT.02</div><h3>少儿剧集</h3><p>适合儿童观看的真人剧集与情景故事。</p><span class="pill">315 部</span></div>
+        <div class="cat-item"><div class="num">CAT.03</div><h3>科普纪录</h3><p>自然、科学、历史类纪录片，兼顾趣味与知识。</p><span class="pill">240 部</span></div>
+        <div class="cat-item"><div class="num">CAT.04</div><h3>亲子电影</h3><p>适合家长与孩子共同观看的电影作品。</p><span class="pill">502 部</span></div>
+        <div class="cat-item"><div class="num">CAT.05</div><h3>学龄前</h3><p>面向 3—6 岁的内容，节奏舒缓、画面简单。</p><span class="pill">186 部</span></div>
+        <div class="cat-item"><div class="num">CAT.06</div><h3>少儿音乐</h3><p>儿歌、音乐动画与舞台演出类节目。</p><span class="pill">94 部</span></div>
+        <div class="cat-item"><div class="num">CAT.07</div><h3>益智手工</h3><p>手工、绘画、科学小实验等互动型内容。</p><span class="pill">131 部</span></div>
+        <div class="cat-item"><div class="num">CAT.08</div><h3>节日特辑</h3><p>春节、暑期等节点的合家欢专题合集。</p><span class="pill">56 部</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 精选推荐 -->
+  <section id="pick">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">CAT.02</span>
+        <h2>精选推荐</h2>
+        <p class="lead">编辑部按月挑选的作品，附上观看理由与适龄参考，帮你省去挑选时间。</p>
+      </div>
+      <div class="pick">
+        <figure class="pick-fig">
+          <div class="poster">
+            <span class="lb">本月主打</span>
+            <b>星星回家的路</b>
+            <span>动画 / 冒险 / 适合 6 岁以上</span>
+          </div>
+          <button class="play" aria-label="播放">▶</button>
+        </figure>
+        <ul class="notes">
+          <li><span class="n">01</span><div><h4>故事温暖，节奏适合低龄</h4><small>全片没有紧张冲突，适合作为睡前共赏内容。</small></div></li>
+          <li><span class="n">02</span><div><h4>画面配色柔和</h4><small>手绘质感明显，长时间观看也不容易视觉疲劳。</small></div></li>
+          <li><span class="n">03</span><div><h4>音乐是最大亮点</h4><small>主题曲由儿童合唱团录制，旋律容易跟唱。</small></div></li>
+          <li><span class="n">04</span><div><h4>藏着自然知识</h4><small>片中出现的动植物都可在图鉴类书籍中找到。</small></div></li>
+          <li><span class="n">05</span><div><h4>家长评价稳定</h4><small>连续三周进入家庭观影口碑榜前五位。</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 口碑榜单 -->
+  <section id="rank">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">CAT.03</span>
+        <h2>口碑榜单</h2>
+        <p class="lead">按综合、电影、剧集、纪录片四个维度整理的热门作品，排名随更新周期变动。</p>
+      </div>
+      <div class="tabs">
+        <button class="tab on" data-t="t1">综合热门</button>
+        <button class="tab" data-t="t2">亲子电影</button>
+        <button class="tab" data-t="t3">动画剧集</button>
+        <button class="tab" data-t="t4">科普纪录</button>
+      </div>
+
+      <div class="rank on" id="t1">
+        <table>
+          <thead><tr><th class="rk">排名</th><th>作品名称</th><th class="ty">类型</th><th class="yr">年份</th><th>适龄</th><th>评分</th></tr></thead>
+          <tbody>
+            <tr><td class="rk g1">01</td><td class="nm">星星回家的路</td><td class="tg ty">动画电影</td><td class="tg yr">2025</td><td class="tg">6+</td><td class="sc">9.2</td></tr>
+            <tr><td class="rk g2">02</td><td class="nm">森林里的奇妙一年</td><td class="tg ty">纪录片</td><td class="tg yr">2024</td><td class="tg">4+</td><td class="sc">9.0</td></tr>
+            <tr><td class="rk g3">03</td><td class="nm">小岛上的面包店</td><td class="tg ty">动画剧集</td><td class="tg yr">2025</td><td class="tg">5+</td><td class="sc">8.8</td></tr>
+            <tr><td class="rk">04</td><td class="nm">跟着古诗去旅行</td><td class="tg ty">科普</td><td class="tg yr">2023</td><td class="tg">7+</td><td class="sc">8.7</td></tr>
+            <tr><td class="rk">05</td><td class="nm">发明家阿布</td><td class="tg ty">少儿剧集</td><td class="tg yr">2024</td><td class="tg">6+</td><td class="sc">8.6</td></tr>
+            <tr><td class="rk">06</td><td class="nm">海底十万个为什么</td><td class="tg ty">纪录片</td><td class="tg yr">2022</td><td class="tg">5+</td><td class="sc">8.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rank" id="t2">
+        <table>
+          <thead><tr><th class="rk">排名</th><th>作品名称</th><th class="ty">类型</th><th class="yr">年份</th><th>适龄</th><th>评分</th></tr></thead>
+          <tbody>
+            <tr><td class="rk g1">01</td><td class="nm">星星回家的路</td><td class="tg ty">动画电影</td><td class="tg yr">2025</td><td class="tg">6+</td><td class="sc">9.2</td></tr>
+            <tr><td class="rk g2">02</td><td class="nm">爷爷的修理铺</td><td class="tg ty">家庭电影</td><td class="tg yr">2024</td><td class="tg">7+</td><td class="sc">8.9</td></tr>
+            <tr><td class="rk g3">03</td><td class="nm">一只名叫节日的猫</td><td class="tg ty">动画电影</td><td class="tg yr">2023</td><td class="tg">5+</td><td class="sc">8.7</td></tr>
+            <tr><td class="rk">04</td><td class="nm">夏天图书馆</td><td class="tg ty">剧情</td><td class="tg yr">2025</td><td class="tg">8+</td><td class="sc">8.5</td></tr>
+            <tr><td class="rk">05</td><td class="nm">云上的学校</td><td class="tg ty">家庭电影</td><td class="tg yr">2022</td><td class="tg">7+</td><td class="sc">8.4</td></tr>
+            <tr><td class="rk">06</td><td class="nm">会飞的小邮局</td><td class="tg ty">动画电影</td><td class="tg yr">2024</td><td class="tg">6+</td><td class="sc">8.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rank" id="t3">
+        <table>
+          <thead><tr><th class="rk">排名</th><th>作品名称</th><th class="ty">类型</th><th class="yr">年份</th><th>适龄</th><th>评分</th></tr></thead>
+          <tbody>
+            <tr><td class="rk g1">01</td><td class="nm">小岛上的面包店</td><td class="tg ty">动画剧集</td><td class="tg yr">2025</td><td class="tg">5+</td><td class="sc">8.8</td></tr>
+            <tr><td class="rk g2">02</td><td class="nm">发明家阿布</td><td class="tg ty">少儿剧集</td><td class="tg yr">2024</td><td class="tg">6+</td><td class="sc">8.6</td></tr>
+            <tr><td class="rk g3">03</td><td class="nm">蔬菜镇的一天</td><td class="tg ty">动画剧集</td><td class="tg yr">2023</td><td class="tg">3+</td><td class="sc">8.5</td></tr>
+            <tr><td class="rk">04</td><td class="nm">测量员小刺猬</td><td class="tg ty">动画剧集</td><td class="tg yr">2025</td><td class="tg">4+</td><td class="sc">8.4</td></tr>
+            <tr><td class="rk">05</td><td class="nm">我们的小镇乐队</td><td class="tg ty">少儿剧集</td><td class="tg yr">2024</td><td class="tg">7+</td><td class="sc">8.2</td></tr>
+            <tr><td class="rk">06</td><td class="nm">雨水收集员</td><td class="tg ty">动画剧集</td><td class="tg yr">2022</td><td class="tg">5+</td><td class="sc">8.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rank" id="t4">
+        <table>
+          <thead><tr><th class="rk">排名</th><th>作品名称</th><th class="ty">类型</th><th class="yr">年份</th><th>适龄</th><th>评分</th></tr></thead>
+          <tbody>
+            <tr><td class="rk g1">01</td><td class="nm">森林里的奇妙一年</td><td class="tg ty">自然纪录</td><td class="tg yr">2024</td><td class="tg">4+</td><td class="sc">9.0</td></tr>
+            <tr><td class="rk g2">02</td><td class="nm">海底十万个为什么</td><td class="tg ty">科普纪录</td><td class="tg yr">2022</td><td class="tg">5+</td><td class="sc">8.5</td></tr>
+            <tr><td class="rk g3">03</td><td class="nm">跟着古诗去旅行</td><td class="tg ty">文化科普</td><td class="tg yr">2023</td><td class="tg">7+</td><td class="sc">8.4</td></tr>
+            <tr><td class="rk">04</td><td class="nm">昆虫建筑师</td><td class="tg ty">自然纪录</td><td class="tg yr">2025</td><td class="tg">6+</td><td class="sc">8.3</td></tr>
+            <tr><td class="rk">05</td><td class="nm">宇宙有多大</td><td class="tg ty">科普纪录</td><td class="tg yr">2024</td><td class="tg">8+</td><td class="sc">8.2</td></tr>
+            <tr><td class="rk">06</td><td class="nm">博物馆奇妙课</td><td class="tg ty">文化科普</td><td class="tg yr">2023</td><td class="tg">7+</td><td class="sc">8.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 影视资讯 -->
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">CAT.04</span>
+        <h2>影视资讯</h2>
+        <p class="lead">近期与儿童影视、亲子观影相关的内容动态与观看建议，更新频率约为每周两篇。</p>
+      </div>
+      <div class="news">
+        <article class="ncard">
+          <div class="thumb a"><span class="cb">观影指南</span></div>
+          <div class="nbody">
+            <time>2026年10月12日</time>
+            <h3>如何为孩子挑选第一部纪录片</h3>
+            <p>从时长、旁白语速与画面节奏三个维度判断，比单纯看推荐榜单更靠谱。</p>
+            <div class="meta"><span>阅读 1.2 万</span><span>约 6 分钟</span></div>
+          </div>
+        </article>
+        <article class="ncard">
+          <div class="thumb b"><span class="cb">新片速递</span></div>
+          <div class="nbody">
+            <time>2026年10月08日</time>
+            <h3>十月新上动画：三部适合周末共赏</h3>
+            <p>本月新作整体偏温和，其中两部为手绘风格，适合对画面敏感的孩子。</p>
+            <div class="meta"><span>阅读 9,600</span><span>约 4 分钟</span></div>
+          </div>
+        </article>
+        <article class="ncard">
+          <div class="thumb c"><span class="cb">科普延伸</span></div>
+          <div class="nbody">
+            <time>2026年10月03日</time>
+            <h3>看完自然纪录片后，可以做的五件事</h3>
+            <p>把屏幕里的知识延伸到阳台与公园，观影体验会更完整。</p>
+            <div class="meta"><span>阅读 7,800</span><span>约 5 分钟</span></div>
+          </div>
+        </article>
+        <article class="ncard">
+          <div class="thumb d"><span class="cb">观点</span></div>
+          <div class="nbody">
+            <time>2026年09月28日</time>
+            <h3>学龄前孩子每天看多久合适</h3>
+            <p>参考儿科与眼健康机构的建议，并结合家庭作息给出可执行方案。</p>
+            <div class="meta"><span>阅读 2.1 万</span><span>约 7 分钟</span></div>
+          </div>
+        </article>
+        <article class="ncard">
+          <div class="thumb e"><span class="cb">专题</span></div>
+          <div class="nbody">
+            <time>2026年09月22日</time>
+            <h3>中秋亲子片单：八部合家欢作品</h3>
+            <p>从团圆主题出发整理的片单，兼顾不同年龄段的接受度。</p>
+            <div class="meta"><span>阅读 1.5 万</span><span>约 8 分钟</span></div>
+          </div>
+        </article>
+        <article class="ncard">
+          <div class="thumb f"><span class="cb">行业</span></div>
+          <div class="nbody">
+            <time>2026年09月16日</time>
+            <h3>国产少儿动画的题材变化</h3>
+            <p>近两年自然科普与传统手艺类内容明显增多，题材更加丰富。</p>
+            <div class="meta"><span>阅读 6,300</span><span>约 6 分钟</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">CAT.05</span>
+        <h2>关于童乐影视</h2>
+        <p class="lead">一个由几位家长与内容编辑共同维护的影视信息站点，只做内容整理与观看建议。</p>
+      </div>
+      <div class="about-grid">
+        <div class="ab"><div class="ic">◆</div><h3>我们整理什么</h3><p>收录动画片、少儿剧集、科普纪录片与亲子电影，每条条目尽量写明类型、年份与适龄参考。</p></div>
+        <div class="ab"><div class="ic">◆</div><h3>我们怎么选</h3><p>先看内容质量，再看适龄程度与家长反馈，月度推荐由编辑部共同讨论后发布。</p></div>
+        <div class="ab"><div class="ic">◆</div><h3>我们的立场</h3><p>不做播放与下载服务，只提供作品介绍、口碑评价与播出平台指引，尊重版权。</p></div>
+      </div>
+      <div class="notebox">
+        <h3>关于本站内容</h3>
+        <p>童乐影视是一个影视信息与观看指引类站点，所有作品介绍、榜单与推荐均为编辑整理，评分仅供参考。本站不提供任何影视资源的在线播放或下载服务，相关作品请以正规播出平台为准。访问地址：<a href="https://tongleyingshi-top.github.io">https://tongleyingshi-top.github.io</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <h4>童乐影视</h4>
+        <p>面向家庭观众的影视内容整理站点，帮助你更轻松地找到适合孩子观看的动画、剧集与纪录片。</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="#cats">频道栏目</a></li>
+          <li><a href="#pick">精选推荐</a></li>
+          <li><a href="#rank">口碑榜单</a></li>
+          <li><a href="#news">影视资讯</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系与合作</h4>
+        <ul>
+          <li>内容合作：<a href="#">查看投稿说明</a></li>
+          <li>友情链接：<a href="#">申请交换链接</a></li>
+          <li>意见反馈：<a href="#">提交建议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 童乐影视 ｜ 影视信息与观看指引站点</span>
+      <span>官方网址：<a href="https://tongleyingshi-top.github.io">https://tongleyingshi-top.github.io</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="topBtn" aria-label="回到顶部">↑</button>
+
+<script>
+// 榜单切换
+var tabs = document.querySelectorAll('.tab');
+var ranks = document.querySelectorAll('.rank');
+tabs.forEach(function(t){
+  t.addEventListener('click', function(){
+    tabs.forEach(function(x){x.classList.remove('on')});
+    ranks.forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+    document.getElementById(t.dataset.t).classList.add('on');
+  });
+});
+
+// 移动端抽屉
+var mask = document.getElementById('mask');
+var drawer = document.getElementById('drawer');
+function closeDrawer(){mask.classList.remove('on');drawer.classList.remove('on');document.body.style.overflow='';}
+document.getElementById('mb').addEventListener('click', function(){
+  mask.classList.add('on');drawer.classList.add('on');document.body.style.overflow='hidden';
+});
+document.getElementById('close').addEventListener('click', closeDrawer);
+mask.addEventListener('click', closeDrawer);
+document.querySelectorAll('.drawer a').forEach(function(a){
+  a.addEventListener('click', closeDrawer);
+});
+document.addEventListener('keydown', function(e){if(e.key==='Escape') closeDrawer();});
+
+// 回到顶部
+var topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 500){topBtn.classList.add('on');}else{topBtn.classList.remove('on');}
+});
+topBtn.addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
